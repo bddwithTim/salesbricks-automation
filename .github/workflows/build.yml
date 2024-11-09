@@ -43,7 +43,7 @@ jobs:
       run: npm run lint
 
     - name: Run Playwright tests on Chrome in headed mode with Xvfb
-      run: xvfb-run -a npx playwright test --headed
+      run: xvfb-run -a npm run test:chrome -- --headed --workers=1
       env:
         CI: true
 
