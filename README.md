@@ -51,14 +51,14 @@ npm run test:edge      # Run in Edge
 ```
 
 ### Run specific test file
-   ```bash
-   npx playwright test tests/checkOutFlow.test.ts
-   ```
+```bash
+npx playwright test tests/checkOutFlow.test.ts
+```
 
 ### Run tests with UI Mode
-   ```bash
-   npx playwright test --ui
-   ```
+```bash
+npx playwright test --ui
+```
 
 ### Run tests with specific tag
 ### 🏷 Test Tags
@@ -67,19 +67,19 @@ npm run test:edge      # Run in Edge
 - `@functional`: Functional validation tests
 - `@regression`: Regression tests
 
-   ```bash
-   # Single tag
-   npm run test:smoke       # Run smoke tests
-   npm run test:functional  # Run functional tests
-   npm run test:regression  # Run regression tests
+```bash
+# Single tag
+npm run test:smoke       # Run smoke tests
+npm run test:functional  # Run functional tests
+npm run test:regression  # Run regression tests
 
-   # Or using npx directly
-   npx playwright test --grep @smoke
+# Or using npx directly
+npx playwright test --grep @smoke
 
-   # Multiple tags
-   npx playwright test --grep "@smoke|@functional"     # Run tests with either @smoke OR @functional
-   npx playwright test --grep "@smoke&@functional"     # Run tests with both @smoke AND @functional
-   ```
+# Multiple tags
+npx playwright test --grep "@smoke|@functional"     # Run tests with either @smoke OR @functional
+npx playwright test --grep "@smoke&@functional"     # Run tests with both @smoke AND @functional
+```
    
 ### Run tests with tag and specific browser
 ```bash
@@ -97,3 +97,4 @@ npm run test:firefox -- --workers=1                 # Run all tests in Firefox w
 ## ⚠️ Automation Limitations
 
 The current automation repository primarily supports functional testing for web applications on desktop browsers. However, it is important to note that mobile automation is not supported at this time.
+
