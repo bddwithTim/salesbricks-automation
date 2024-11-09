@@ -27,14 +27,14 @@ jobs:
       uses: actions/cache@v4
       with:
         path: |
-          **/node_modules
+          node_modules
           ~/.cache/ms-playwright
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Install Playwright browsers
       run: npx playwright install chrome
@@ -42,8 +42,8 @@ jobs:
     - name: Run ESLint
       run: npm run lint
 
-    - name: Run Playwright tests on Chrome in headed mode
-      run: npm run test:chrome -- --headed
+    - name: Run Playwright tests on Chrome in headed mode with Xvfb
+      run: xvfb-run -a npx playwright test --headed
       env:
         CI: true
 
