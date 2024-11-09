@@ -1,5 +1,5 @@
 # Salesbricks Automation
-[![Playwright Tests](https://github.com/bddwithTim/salesbricks-automation/actions/workflows/playwright.yml/badge.svg)]([https://github.com/bddwithTim/salesbricks-automation/actions/workflows/playwright.yml](https://github.com/bddwithTim/salesbricks-automation/actions/workflows/playwright.yml))
+[![Playwright Tests](https://github.com/bddwithTim/salesbricks-automation/actions/workflows/build.yml/badge.svg)](https://github.com/bddwithTim/salesbricks-automation/actions/workflows/build.yml)
 
 This repository showcases automated testing capabilities as part of a take-home coding challenge, focusing on functional testing scenarios.
 
