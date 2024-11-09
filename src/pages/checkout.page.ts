@@ -57,12 +57,27 @@ export class CheckoutPage {
     };
   }
 
+  async clickTermsCheckbox(): Promise<void> {
+    await this.locator.termsCheckbox.waitFor({ state: 'visible', timeout: 10000 });
+    await this.locator.termsCheckbox.click();
+  }
+
+  async clickPlaceOrderButton(): Promise<void> {
+    await this.locator.placeOrderButton.waitFor({ state: 'visible', timeout: 10000 });
+    await this.locator.placeOrderButton.click();
+  }
+
   async inputCardDetails({ cardNumber, expirationDate, securityCode, country, zipCode }: CardDetails): Promise<void> {
     await this.locator.cardNumberInput.fill(cardNumber);
     await this.locator.expirationDateInput.fill(expirationDate);
     await this.locator.securityCodeInput.fill(securityCode);
     await this.locator.countryDropdown.selectOption(country);
     await this.locator.zipCodeInput.fill(zipCode);
+  }
+
+  async checkTermsAndPlaceOrder(): Promise<void> {
+    await this.clickTermsCheckbox();
+    await this.clickPlaceOrderButton();
   }
 
   async waitForProcessingYourPaymentModal(): Promise<void> {

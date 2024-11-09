@@ -56,9 +56,8 @@ test(
 
     // Accounts Payable Information
     await checkoutPage.locator.emailInput.fill('john.doe@example.com');
-    await checkoutPage.locator.termsCheckbox.click();
-    await checkoutPage.locator.placeOrderButton.click();
 
+    await checkoutPage.checkTermsAndPlaceOrder();
     await checkoutPage.waitForProcessingYourPaymentModal();
 
     // wait for Thank you page to load
