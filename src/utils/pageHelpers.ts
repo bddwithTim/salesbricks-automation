@@ -34,6 +34,5 @@ export async function isForFieldInErrorState(element: Locator, timeout: number =
 // Checks if multiple form fields are in an error state
 export async function areFormFieldsInErrorState(elements: Locator[]): Promise<boolean> {
   const results = await Promise.all(elements.map((element) => isForFieldInErrorState(element)));
-  console.log(`results = ${results}`);
   return results.every((result) => result === true);
 }

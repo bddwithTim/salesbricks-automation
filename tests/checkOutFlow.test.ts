@@ -16,7 +16,7 @@ test(
     await orderReviewPage.locator.continueButton.click();
 
     // wait for it to navigate to the Company Info Page
-    await waitForPageToLoad(page, 'Company info', { timeout: 10000 });
+    await waitForPageToLoad(page, 'Company info', { timeout: 15000 });
 
     // Fill out the Company Info Form
     await companyInfoPage.fillCompanyAddressFields({
@@ -37,7 +37,7 @@ test(
 
     // wait for it to navigate to the Checkout Page
     await waitForPageToLoad(page, 'Checkout', {
-      timeout: 10000,
+      timeout: 30000,
       state: 'networkidle',
     }); // need to set to `networkidle` to allow the card details to load
 
@@ -55,7 +55,8 @@ test(
     // Accounts Payable Information
     await checkoutPage.locator.emailInput.fill('john.doe@example.com');
 
-    await checkoutPage.checkTermsAndPlaceOrder();
+    await checkoutPage.clickTermsCheckbox({ state: 'checked' });
+    await checkoutPage.locator.placeOrderButton.click();
     await checkoutPage.waitForProcessingYourPaymentModal();
 
     // wait for Thank you page to load

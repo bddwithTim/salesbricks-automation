@@ -8,6 +8,10 @@ type CardDetails = {
   zipCode: string;
 };
 
+type CheckboxState = {
+  state: 'checked' | 'unchecked';
+};
+
 export class CheckoutPage {
   private readonly page: Page;
   private readonly iFrame: FrameLocator;
@@ -43,7 +47,7 @@ export class CheckoutPage {
 
       // Accounts Payable Information
       accountsPayableEmailInput: this.page.locator('input[data-test="components-buildOrder-accountsPayable"]'),
-      termsCheckbox: this.page.locator('input[data-test="components-buildOrder-termsAndConditions-accept"]'),
+      termsCheckbox: this.page.locator('input[type="checkbox"]'),
 
       // Buttons
       placeOrderButton: this.page.locator('button[title="Place order"]'),
@@ -57,10 +61,30 @@ export class CheckoutPage {
     };
   }
 
-  async clickTermsCheckbox(): Promise<void> {
-    await this.locator.termsCheckbox.waitFor({ state: 'visible', timeout: 10000 });
-    await this.page.waitForTimeout(1000); // Added a delay due to CI/CD issues
-    await this.locator.termsCheckbox.click();
+  async clickTermsCheckbox({ state }: CheckboxState): Promise<void> {
+    const shouldBeChecked = state === 'checked';
+    const isChecked = await this.isTermsCheckboxChecked();
+
+    if (isChecked !== shouldBeChecked) {
+      await this.toggleTermsCheckbox(shouldBeChecked);
+    }
+  }
+
+  private async isTermsCheckboxChecked(): Promise<boolean> {
+    const currentState = await this.locator.termsCheckbox.getAttribute('data-checked');
+    return currentState === 'true';
+  }
+
+  private async toggleTermsCheckbox(shouldBeChecked: boolean): Promise<void> {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      await this.locator.termsCheckbox.click();
+      await this.page.waitForTimeout(500);
+      const newState = await this.isTermsCheckboxChecked();
+      if (newState === shouldBeChecked) {
+        return;
+      }
+    }
+    throw new Error(`Checkbox state did not change to ${shouldBeChecked ? 'checked' : 'unchecked'} as expected.`);
   }
 
   async clickPlaceOrderButton(): Promise<void> {
@@ -75,12 +99,6 @@ export class CheckoutPage {
     await this.locator.securityCodeInput.fill(securityCode);
     await this.locator.countryDropdown.selectOption(country);
     await this.locator.zipCodeInput.fill(zipCode);
-  }
-
-  async checkTermsAndPlaceOrder(): Promise<void> {
-    await this.clickTermsCheckbox();
-    await this.page.waitForTimeout(1000); // Added a delay due to CI/CD issues
-    await this.clickPlaceOrderButton();
   }
 
   async waitForProcessingYourPaymentModal(): Promise<void> {
