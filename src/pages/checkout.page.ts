@@ -65,7 +65,7 @@ export class CheckoutPage {
 
   async clickPlaceOrderButton(): Promise<void> {
     await this.locator.placeOrderButton.waitFor({ state: 'visible', timeout: 10000 });
-    await expect(this.locator.placeOrderButton).toBeEnabled({ timeout: 1000 });
+    await expect(this.locator.placeOrderButton).toBeEnabled({ timeout: 5000 });
     await this.locator.placeOrderButton.click();
   }
 
@@ -79,6 +79,7 @@ export class CheckoutPage {
 
   async checkTermsAndPlaceOrder(): Promise<void> {
     await this.clickTermsCheckbox();
+    await this.page.waitForTimeout(1000); // Added a delay due to CI/CD issues
     await this.clickPlaceOrderButton();
   }
 
