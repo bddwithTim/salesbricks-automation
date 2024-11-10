@@ -1,4 +1,4 @@
-import { FrameLocator, Page } from '@playwright/test';
+import { expect, FrameLocator, Page } from '@playwright/test';
 
 type CardDetails = {
   cardNumber: string;
@@ -59,11 +59,13 @@ export class CheckoutPage {
 
   async clickTermsCheckbox(): Promise<void> {
     await this.locator.termsCheckbox.waitFor({ state: 'visible', timeout: 10000 });
+    await this.page.waitForTimeout(1000); // Added a delay due to CI/CD issues
     await this.locator.termsCheckbox.click();
   }
 
   async clickPlaceOrderButton(): Promise<void> {
     await this.locator.placeOrderButton.waitFor({ state: 'visible', timeout: 10000 });
+    await expect(this.locator.placeOrderButton).toBeEnabled({ timeout: 1000 });
     await this.locator.placeOrderButton.click();
   }
 
