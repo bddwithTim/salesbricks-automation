@@ -23,9 +23,7 @@ test(
       companyLegalName: 'Test Company',
       streetAddress: '123 Main St',
       city: 'Anytown',
-      state: 'Texas',
       zip: '12345',
-      country: 'United States',
     });
 
     await companyInfoPage.fillPointOfContactFields({

@@ -5,9 +5,9 @@ type CompanyAddressFields = {
   streetAddress: string;
   suiteBuilding?: string;
   city: string;
-  state: string;
+  state?: string;
   zip: string;
-  country: string;
+  country?: string;
 };
 
 type PointOfContactFields = {
@@ -77,9 +77,9 @@ export class CompanyInfoPage {
     await this.locator.streetAddressInput.fill(streetAddress);
     if (suiteBuilding) await this.locator.suiteBuildingInput.fill(suiteBuilding);
     await this.locator.cityInput.fill(city);
-    await this.selectState(state);
+    if (state) await this.selectState(state);
     await this.locator.zipInput.fill(zip);
-    await this.selectCountry(country);
+    if (country) await this.selectCountry(country);
   }
 
   async fillPointOfContactFields({
