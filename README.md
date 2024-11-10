@@ -1,5 +1,7 @@
 # Salesbricks Automation
 [![Playwright Tests](https://github.com/bddwithTim/salesbricks-automation/actions/workflows/build.yml/badge.svg)](https://github.com/bddwithTim/salesbricks-automation/actions/workflows/build.yml)
+[![CodeQL Analysis](https://github.com/bddwithTim/salesbricks-automation/actions/workflows/codeql.yml/badge.svg)](https://github.com/bddwithTim/salesbricks-automation/actions/workflows/codeql.yml)
+[![Dependabot](https://github.com/bddwithTim/salesbricks-automation/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/bddwithTim/salesbricks-automation/actions/workflows/dependabot/dependabot-updates)
 
 This repository showcases automated testing capabilities as part of a take-home coding challenge, focusing on functional testing scenarios.
 
