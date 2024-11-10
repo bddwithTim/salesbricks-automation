@@ -26,7 +26,7 @@ export async function isForFieldInErrorState(element: Locator, timeout: number =
     const className = await element.getAttribute('class');
     // Check if element contains the error class identifier in its class attribute
     return className?.includes('editInput_error__HQa9f') ?? false;
-  } catch (error) {
+  } catch {
     return false;
   }
 }
